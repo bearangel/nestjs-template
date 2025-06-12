@@ -3,10 +3,14 @@ import { ConfigService as NestConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
+import { ConfigUtil } from './config.util';
 
 @Injectable()
 export class ConfigService {
-  constructor(private configService: NestConfigService) {}
+  constructor(private configService: NestConfigService) {
+    // 初始化ConfigUtil
+    ConfigUtil.setConfigService(this);
+  }
 
   /**
    * 通过键获取配置值
